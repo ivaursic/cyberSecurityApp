@@ -14,6 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserAccountServiceJpa implements UserAccountService {
 
@@ -67,6 +69,17 @@ public class UserAccountServiceJpa implements UserAccountService {
     @Override
     public UserAccount findByMail(String mail) {
         return accountRepo.findByMail(mail).orElseThrow(() -> new ResourceNotFoundException("nema"));
+    }
+
+    @Override
+    public List<UserAccount> getAll() {
+        return accountRepo.findAll();
+    }
+
+    @Override
+    public void deleteUser(Long idUserAccount) {
+        UserAccount userAccount = accountRepo.getById(idUserAccount);
+        accountRepo.delete(userAccount);
     }
 
 

@@ -5,6 +5,8 @@ import hr.csa.backend.dto.LoginDTO;
 import hr.csa.backend.dto.OneTimeCodeDTO;
 import hr.csa.backend.dto.UserDTO;
 
+import java.util.List;
+
 public interface UserAccountService {
     UserDTO registerUser(UserDTO userDTO);
 
@@ -15,4 +17,8 @@ public interface UserAccountService {
     //void createAdmins();
 
     UserAccount findByMail(String mail);
+
+    List<UserAccount> getAll();
+
+    void deleteUser(Long idUserAccount);
 }

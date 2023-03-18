@@ -12,5 +12,5 @@ public interface UserAccountService {
 
     UserDTO confrimLogin(OneTimeCodeDTO oneTimeCodeDTO, Long idUserAccount);
 
-    void createAdmins();
+   // void createAdmins();
 }

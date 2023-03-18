@@ -1,11 +1,9 @@
 package hr.csa.backend.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 import java.io.Serializable;
 
@@ -85,5 +83,9 @@ public class UserAccount implements Serializable {
         this.lastName = lastName;
     }
 
+
+    public boolean isAdministrator() {
+        return isAdministrator;
+    }
 
 }

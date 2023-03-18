@@ -1,11 +1,17 @@
 package hr.csa.backend.service.impl;
 
+import java.util.List;
+import java.util.NoSuchElementException;
+
 import hr.csa.backend.dao.UserAccountRepository;
-import hr.csa.backend.domain.UserAccount;
+import hr.csa.backend.domain.*;
+import hr.csa.backend.service.*;
+import hr.csa.backend.exception.*;
+
 import hr.csa.backend.dto.LoginDTO;
 import hr.csa.backend.dto.OneTimeCodeDTO;
 import hr.csa.backend.dto.UserDTO;
-import hr.csa.backend.service.UserAccountService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,6 +28,7 @@ public class UserAccountServiceJpa implements UserAccountService {
 
     @Autowired
     private JavaMailSender javaMailSender;
+
 
     @Override
     public UserDTO registerUser(UserDTO userDTO) {

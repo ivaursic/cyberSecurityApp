@@ -12,9 +12,6 @@ function App() {
   return (
     <>
       <Header />
-      <>
-        <MyAlert></MyAlert>
-      </>
       <Routes>
         <Route exact path="/" element={<Dashboard></Dashboard>} />
         <Route exact path="/login" element={<LoginPage></LoginPage>} />

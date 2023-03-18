@@ -30,7 +30,7 @@ export default function MyAlerts() {
     return (
         <>
             <div>
-                <h3>There are potenitals threats to the network :</h3>
+                <h3>There are potential threats to the network :</h3>
                 {alerts.map(alert => <MyAlert alert={alert}></MyAlert>)}
             </div>
         </>

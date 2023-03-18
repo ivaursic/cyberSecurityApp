@@ -1,5 +1,4 @@
 import MyAlerts from "./MyAlerts";
-import '../styles/DashboardCard.css';
 import { Card } from "@mui/material";
 
 

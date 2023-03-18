@@ -1,16 +1,12 @@
-import { Alert, AlertTitle } from "@mui/material";
-import React from "react";
+import { Alert } from "@mui/material";
 
-export default function MyAlert(props) {
+export default function MyAlert() {
 
-    const {severity, source, type, potentialImpact} = props.alert;
+   
+
     return (
         <>
-            <Alert severity={severity}> 
-            <AlertTitle>{type}</AlertTitle>
-            source : {source}, 
-            potenital impact: {potentialImpact}
-            </Alert>
+            <Alert severity ="warning"> Hello :</Alert>
         </>
     );
 }

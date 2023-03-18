@@ -57,6 +57,7 @@ public class UserAccountServiceJpa implements UserAccountService {
         return UserDTO.toDTO(userAccount);
     }
 
+
     private String sendCodeViaMail(UserAccount userAccount){
         SimpleMailMessage msg = new SimpleMailMessage();
         String code = String.valueOf(Math.floor(Math.random()*(999999-100000+1) + 100000));
@@ -69,4 +70,17 @@ public class UserAccountServiceJpa implements UserAccountService {
         javaMailSender.send(msg);
         return code;
     }
+
+//    @Override
+//    public void createAdmins() {
+//        UserAccount luceAdmin = new UserAccount("lucija.domic@fer.hr", "12345678", "Lucija", "Domić");
+//        UserAccount nixAdmin = new UserAccount("nikoleta.benic@fer.hr", "12345678", "Nikoleta", "Benić");
+//        UserAccount josyUser = new UserAccount("josipa.markic@fer.hr", "12345678", "Josipa", "Markić");
+//        UserAccount ivaUser = new UserAccount("iva.ursic@fer.hr", "12345678", "Iva", "Ursić");
+//
+//        accountRepo.save(luceAdmin);
+//        accountRepo.save(nixAdmin);
+//        accountRepo.save(josyUser);
+//        accountRepo.save(ivaUser);
+//    }
 }

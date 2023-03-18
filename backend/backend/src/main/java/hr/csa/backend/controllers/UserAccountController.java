@@ -5,6 +5,8 @@ import hr.csa.backend.dto.OneTimeCodeDTO;
 import hr.csa.backend.dto.UserDTO;
 import hr.csa.backend.service.UserAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -41,4 +43,10 @@ public class UserAccountController {
         UserDTO userDTO = accountService.confrimLogin(oneTimeCodeDTO, idUserAccount);
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
+
+    //stvara u bazi odma nekoliko usera
+//    @EventListener
+//	public void  appReady(ApplicationReadyEvent event) {
+//		accountService.createAdmins();
+//	}
 }

@@ -4,6 +4,10 @@ public class OneTimeCodeDTO {
 
     String code;
 
+    public OneTimeCodeDTO() {
+
+    }
+
     public String getCode() {
         return code;
     }

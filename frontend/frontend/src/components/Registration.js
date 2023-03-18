@@ -19,20 +19,21 @@ export default function Registration() {
   async function handleSubmit(e) {
     e.preventDefault();
     console.log("poslano");
-    const data = {
-      firstName: firstName,
-      password: password,
-      mail: mail,
-      lastName: lastName
+
+    
+    const data = {mail,password, firstName,lastName}
+
+    try{
+      axios.post("http://localhost:8080/registerUser",JSON.stringify(data))
+      .then(function(response) {
+        alert();
+      }).catch( function(error) {
+        console.log(data);
+        alert('Something went wrong');
+      });
+    } catch(error){
+      console.log(error);
     }
-    axios.post(`http://localhost:8080/registerUser`,
-    JSON.stringify(data))
-    .then(function(response) {
-      alert();
-    }).catch( function(error) {
-      console.log(data);
-      alert('Something went wrong');
-    });
 
   };
 

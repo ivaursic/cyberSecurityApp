@@ -11,7 +11,7 @@ public class Alert {
     @GeneratedValue
     private Long idAlert;
 
-    private AlertLevel alertLevel;
+    private ThreatLevel threatLevel;
 
     private String description;
 

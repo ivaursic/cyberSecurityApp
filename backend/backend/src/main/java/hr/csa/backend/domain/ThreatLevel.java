@@ -1,6 +1,6 @@
 package hr.csa.backend.domain;
 
-public enum AlertLevel {
+public enum ThreatLevel {
 
     HIGH,MEDIUM, LOW
 

@@ -13,4 +13,5 @@ public interface ThreatIntelligenceService {
     List<ThreatIntelligence> getByLevel(String level);
 
     List<ThreatIntelligence> getByDate(Date date);
+    void generateRandom();
 }

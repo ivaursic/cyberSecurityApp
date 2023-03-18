@@ -1,7 +1,5 @@
 package hr.csa.backend.domain;
 
-import org.springframework.aop.target.ThreadLocalTargetSource;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
@@ -13,7 +11,7 @@ public class ThreatIntelligence implements Serializable {
     @GeneratedValue
     private Long idThreatIntelligence;
 
-    private String level;
+    private ThreatLevel level;
     private String name;
     private LocalDateTime dateTime;
 
@@ -21,17 +19,17 @@ public class ThreatIntelligence implements Serializable {
 
     }
 
-    public ThreatIntelligence(String level, String name, LocalDateTime dateTime) {
+    public ThreatIntelligence(ThreatLevel level, String name, LocalDateTime dateTime) {
         this.level = level;
         this.name = name;
         this.dateTime = dateTime;
     }
 
-    public String getLevel() {
+    public ThreatLevel getLevel() {
         return level;
     }
 
-    public void setLevel(String level) {
+    public void setLevel(ThreatLevel level) {
         this.level = level;
     }
 

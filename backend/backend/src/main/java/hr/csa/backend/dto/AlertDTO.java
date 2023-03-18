@@ -1,10 +1,10 @@
 package hr.csa.backend.dto;
 
-import hr.csa.backend.domain.AlertLevel;
+import hr.csa.backend.domain.ThreatLevel;
 
 public class AlertDTO {
 
-    private AlertLevel alertLevel;
+    private ThreatLevel threatLevel;
 
     private String description;
 

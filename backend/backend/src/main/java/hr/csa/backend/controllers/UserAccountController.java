@@ -9,10 +9,6 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.parameters.P;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,7 +40,7 @@ public class UserAccountController {
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
 
-    //stvara u bazi odma nekoliko usera
+//    //stvara u bazi odma nekoliko usera
     @EventListener
 	public void  appReady(ApplicationReadyEvent event) {
         System.out.println("Pokrene se event listener");

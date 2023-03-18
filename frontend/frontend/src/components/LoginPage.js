@@ -29,6 +29,8 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function LoginPage() {
+
+
     const handleSubmit = (event) => {
       event.preventDefault();
       const data = new FormData(event.currentTarget);
@@ -36,6 +38,8 @@ export default function LoginPage() {
         email: data.get('email'),
         password: data.get('password'),
       });
+
+      //POSLA NA BACKEND
     };
   
     return (
@@ -91,7 +95,7 @@ export default function LoginPage() {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2">
+                  <Link href="" variant="body2">
                     Forgot password?
                   </Link>
                 </Grid>

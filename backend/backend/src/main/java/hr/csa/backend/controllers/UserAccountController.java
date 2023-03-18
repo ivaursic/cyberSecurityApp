@@ -14,10 +14,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
+@RestController
+@RequestMapping("")
 public class UserAccountController {
 
     @Autowired
@@ -39,15 +39,19 @@ public class UserAccountController {
     }
 
     @PostMapping("/confirmLogin/{idUserAccount}")
-    public ResponseEntity<UserDTO> loginUser(@RequestBody OneTimeCodeDTO oneTimeCodeDTO, @PathVariable Long idUserAccount){
-        UserDTO userDTO = accountService.confrimLogin(oneTimeCodeDTO, idUserAccount);
-        return new ResponseEntity<>(userDTO, HttpStatus.OK);
+    public ResponseEntity<UserDTO> confirmLogin(@AuthenticationPrincipal User user, @RequestBody OneTimeCodeDTO oneTimeCodeDTO, @PathVariable Long idUserAccount){
+        if(user.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMINISTRATOR"))
+                || user.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_USER"))){
+            UserDTO userDTO = accountService.confirmLogin(oneTimeCodeDTO.getCode(), idUserAccount);
+            return new ResponseEntity<>(userDTO, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
     }
 
-    //stvara u bazi odma nekoliko usera
-    @EventListener
-	public void  appReady(ApplicationReadyEvent event) {
-        System.out.println("Pokrene se event listener");
-		accountService.createAdmins();
-	}
+//    //stvara u bazi odma nekoliko usera
+//    @EventListener
+//	public void  appReady(ApplicationReadyEvent event) {
+//        System.out.println("Pokrene se event listener");
+//		accountService.createAdmins();
+//	}
 }

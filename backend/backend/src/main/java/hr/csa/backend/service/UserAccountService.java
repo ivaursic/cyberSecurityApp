@@ -10,9 +10,9 @@ public interface UserAccountService {
 
     UserDTO loginUser(LoginDTO loginDTO);
 
-    UserDTO confrimLogin(OneTimeCodeDTO oneTimeCodeDTO, Long idUserAccount);
+    UserDTO confirmLogin(String code, Long idUserAccount);
 
-    void createAdmins();
+    //void createAdmins();
 
     UserAccount findByMail(String mail);
 }

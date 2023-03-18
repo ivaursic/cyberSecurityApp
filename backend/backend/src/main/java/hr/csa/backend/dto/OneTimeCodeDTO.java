@@ -2,13 +2,14 @@ package hr.csa.backend.dto;
 
 public class OneTimeCodeDTO {
 
-    private String code;
+    String code;
 
     public String getCode() {
         return code;
     }
 
     public OneTimeCodeDTO(String code) {
+        super();
         this.code = code;
     }
 

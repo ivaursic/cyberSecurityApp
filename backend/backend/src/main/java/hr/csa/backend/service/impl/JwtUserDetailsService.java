@@ -44,7 +44,7 @@ public class JwtUserDetailsService implements UserDetailsService {
     private List<GrantedAuthority> authorities(String mail) {
         UserAccount userAccount = accountService.findByMail(mail);
         if (userAccount.isAdministrator())
-            return commaSeparatedStringToAuthorityList("ROLE_MADMINISTRATOR");
+            return commaSeparatedStringToAuthorityList("ROLE_ADMINISTRATOR");
         else
             return commaSeparatedStringToAuthorityList("ROLE_USER");
 

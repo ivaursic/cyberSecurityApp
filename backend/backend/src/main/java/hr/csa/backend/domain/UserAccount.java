@@ -90,4 +90,7 @@ public class UserAccount implements Serializable {
         return isAdministrator;
     }
 
+    public void setAdministrator(boolean administrator) {
+        isAdministrator = administrator;
+    }
 }

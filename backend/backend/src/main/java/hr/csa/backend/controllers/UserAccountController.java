@@ -45,8 +45,9 @@ public class UserAccountController {
     }
 
     //stvara u bazi odma nekoliko usera
-//    @EventListener
-//	public void  appReady(ApplicationReadyEvent event) {
-//		accountService.createAdmins();
-//	}
+    @EventListener
+	public void  appReady(ApplicationReadyEvent event) {
+        System.out.println("Pokrene se event listener");
+		accountService.createAdmins();
+	}
 }

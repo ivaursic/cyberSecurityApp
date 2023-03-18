@@ -44,7 +44,7 @@ public class UserAccountServiceJpa implements UserAccountService {
     @Override
     public UserDTO loginUser(LoginDTO loginDTO) {
         UserAccount userAccount = new UserAccount();
-        userAccount = accountRepo.findByMail(loginDTO.getMail());
+        userAccount = findByMail(loginDTO.getMail());
         if (!bcryptEncoder.matches(loginDTO.getPassword(), userAccount.getPassword())) {
             //TODO napravi iznimku
             throw new RuntimeException("Wrong username or password");
@@ -76,8 +76,8 @@ public class UserAccountServiceJpa implements UserAccountService {
         SimpleMailMessage msg = new SimpleMailMessage();
         String code = String.valueOf(Math.floor(Math.random()*(999999-100000+1) + 100000));
         //TODO mail s kojeg cemo slat mailove
-        msg.setFrom("motomoto@gmail.com");
-        msg.setSubject("Email address confirmation");
+        msg.setFrom("kokeferencija7@gmail.com");
+        msg.setSubject("Login to your CyberSecurityApp");
         msg.setText("Hi " + userAccount.getFirstName() + " " + userAccount.getLastName()
                 + " \nYour onetime login code for CyberSecurityApp is:\n" + code);
         msg.setTo(userAccount.getMail());
@@ -85,16 +85,27 @@ public class UserAccountServiceJpa implements UserAccountService {
         return code;
     }
 
-//    @Override
-//    public void createAdmins() {
-//        UserAccount luceAdmin = new UserAccount("lucija.domic@fer.hr", "12345678", "Lucija", "Domić");
-//        UserAccount nixAdmin = new UserAccount("nikoleta.benic@fer.hr", "12345678", "Nikoleta", "Benić");
-//        UserAccount josyUser = new UserAccount("josipa.markic@fer.hr", "12345678", "Josipa", "Markić");
-//        UserAccount ivaUser = new UserAccount("iva.ursic@fer.hr", "12345678", "Iva", "Ursić");
-//
-//        accountRepo.save(luceAdmin);
-//        accountRepo.save(nixAdmin);
-//        accountRepo.save(josyUser);
-//        accountRepo.save(ivaUser);
-//    }
+    @Override
+    public void createAdmins() {
+        try{
+            findByMail("lucija.domic@fer.hr");
+        } catch (Exception e) {
+            UserAccount luceAdmin = new UserAccount("lucija.domic@fer.hr", bcryptEncoder.encode("12345678"), "Lucija", "Domić");
+            UserAccount nixAdmin = new UserAccount("nikoleta.benic@fer.hr", bcryptEncoder.encode("12345678"), "Nikoleta", "Benić");
+            UserAccount josyUser = new UserAccount("josipa.markic@fer.hr", bcryptEncoder.encode("12345678"), "Josipa", "Markić");
+            UserAccount ivaUser = new UserAccount("iva.ursic@fer.hr", bcryptEncoder.encode("12345678"), "Iva", "Ursić");
+
+            luceAdmin.setAdministrator(true);
+            nixAdmin.setAdministrator(true);
+            josyUser.setAdministrator(false);
+            ivaUser.setAdministrator(false);
+
+            accountRepo.save(luceAdmin);
+            System.out.println("Luce spremljena");
+            accountRepo.save(nixAdmin);
+            accountRepo.save(josyUser);
+            accountRepo.save(ivaUser);
+        }
+    }
+
 }

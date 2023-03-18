@@ -11,7 +11,7 @@ public interface UserAccountRepository extends JpaRepository<UserAccount, Long> 
 
     UserAccount getById(Long id);
 
-    UserAccount findByMail(String mail);
+    Optional<UserAccount> findByMail(String mail);
 
     UserAccount getByIdUserAccount(Long idUserAccount);
 }

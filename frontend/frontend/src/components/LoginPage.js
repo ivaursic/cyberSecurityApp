@@ -14,6 +14,8 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 
+import axios from 'axios';
+
 function Copyright(props) {
   return (
     <Typography
@@ -34,15 +36,24 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function LoginPage() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
 
-    //POSLA NA BACKEND
+  const [error, setError] = React.useState('');
+  const [mail, setMail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [user, setUser] = React.useState("");
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setError("");
+    const user = {mail, password};
+    try {
+      const response = await axios.post("http://localhost:8080/login", user);
+      setUser(response.data);
+      localStorage.setItem('user', JSON.stringify(response.data));
+      console.log(JSON.parse(localStorage.getItem('user')));
+    } catch(error) {
+      setError("Login failed");
+    }
   };
 
   return (
@@ -76,6 +87,7 @@ export default function LoginPage() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={({ target }) => setMail(target.value)}
             />
             <TextField
               margin="normal"
@@ -86,10 +98,7 @@ export default function LoginPage() {
               type="password"
               id="password"
               autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              onChange={({ target }) => setPassword(target.value)}
             />
             <Button
               type="submit"
@@ -99,11 +108,6 @@ export default function LoginPage() {
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
-                <Link href="" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
               <Grid item>
                 <Link href="/registration" variant="body2">
                   {"Don't have an account? Sign Up"}

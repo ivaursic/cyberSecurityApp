@@ -7,6 +7,7 @@ import { Dashboard } from './components/DashBoard';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MyAlert from "./components/MyAlert";
 import Alerts from "./components/MyAlerts";
+import ConfirmLogin from "./components/ConfirmLogin";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           path="/registration"
           element={<Registration></Registration>}
         />
+        <Route exact path="/confirmLogin" element={<ConfirmLogin></ConfirmLogin>}></Route>
       </Routes>
     </>
   );

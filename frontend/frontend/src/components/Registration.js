@@ -1,33 +1,42 @@
 import React from "react";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+import { Button } from "@mui/material";
 
 export default function Registration() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
+
+  const [firstName, setFirstName] = React.useState('');
+  const [mail, setMail] = React.useState('');
+  const [lastName, setLastName] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    console.log("poslano");
+    const data = {
+      firstName: firstName,
+      password: password,
+      mail: mail,
+      lastName: lastName
+    }
+    axios.post(`http://localhost:8080/registerUser`,
+    JSON.stringify(data))
+    .then(function(response) {
+      alert();
+    }).catch( function(error) {
+      console.log(data);
+      alert('Something went wrong');
     });
 
-    //POSLA NA BACKEND
   };
 
   return (
-    // eslint-disable-next-line no-undef
 
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -54,6 +63,7 @@ export default function Registration() {
             name="name"
             autoComplete="name"
             autoFocus
+            onChange={({ target }) => setFirstName(target.value)}
           />
           <TextField
             margin="normal"
@@ -64,6 +74,7 @@ export default function Registration() {
             name="surname"
             autoComplete="surname"
             autoFocus
+            onChange={({ target }) => setLastName(target.value)}
           />
           <TextField
             margin="normal"
@@ -74,6 +85,7 @@ export default function Registration() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={({ target }) => setMail(target.value)}
           />
           <TextField
             margin="normal"
@@ -84,18 +96,16 @@ export default function Registration() {
             type="password"
             id="password"
             autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+            onChange={({ target }) => setPassword(target.value)}
           />
           <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}>
-            Sign Up
-          </Button>
+          onSubmit = {handleSubmit}
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}>
+              Sign In
+            </Button>
         </Box>
       </Box>
     </Container>

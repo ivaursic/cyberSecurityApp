@@ -30,8 +30,15 @@ public class UserAccount implements Serializable {
     @NotNull(message = "last name shouldn't be null")
     private String lastName;
 
-    private boolean isAdministrator;
-    private boolean isUser;
+    private String mfaOneTimePassword;
+
+    public String getMfaOneTimePassword() {
+        return mfaOneTimePassword;
+    }
+
+    public void setMfaOneTimePassword(String mfaOneTimePassword) {
+        this.mfaOneTimePassword = mfaOneTimePassword;
+    }
 
     public String getMail() {
         return mail;
@@ -68,15 +75,14 @@ public class UserAccount implements Serializable {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+    public UserAccount() {
+    }
 
-
-    public UserAccount(String mail, String password, String firstName, String lastName, boolean isAdministrator, boolean isUser) {
+    public UserAccount(String mail, String password, String firstName, String lastName) {
         this.mail = mail;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.isAdministrator = isAdministrator;
-        this.isUser = isUser;
     }
 
 

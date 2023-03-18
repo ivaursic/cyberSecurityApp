@@ -61,9 +61,9 @@ export default function LoginPage() {
     }
 
     e.preventDefault();
-    const response = await axios.post("api/login", axiosPayload
+    const response = await axios.post("http://localhost:8080/login", axiosPayload
     ).then(res => {
-      setUserL(response.data);
+      setUserL(res.data);
       console.log(res.data);
     }).catch(err => {
       console.log(err);

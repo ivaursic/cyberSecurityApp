@@ -18,27 +18,23 @@ export default function Registration() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log("poslano");
+    const data = {
+    mail : mail,
+    password : password,
+    firstName : firstName,
+    lastName : lastName
+  }
 
-    
-    const data = {mail,password, firstName,lastName}
-
-    try{
-      axios.post("http://localhost:8080/registerUser",JSON.stringify(data))
-      .then(function(response) {
-        alert();
+      const response  = await axios.post("http://localhost:8080/registerUser", data)
+      .then(function(res) {
+        console.log(res);
       }).catch( function(error) {
-        console.log(data);
+        console.log(error);
         alert('Something went wrong');
       });
-    } catch(error){
-      console.log(error);
-    }
-
   };
 
   return (
-
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Box

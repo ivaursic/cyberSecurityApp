@@ -34,8 +34,8 @@ public class JwtAuthenticationController {
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception
     {
-        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword()); //magicno provjeri dani password, ali sigurno radi
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+        authenticate(authenticationRequest.getMail(), authenticationRequest.getPassword()); //magicno provjeri dani password, ali sigurno radi
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getMail());
         //JwtUserDetails userDetails = new JwtUserDetails();
         //userDetails.setUsername(authenticationRequest.getUsername());
 
@@ -44,9 +44,9 @@ public class JwtAuthenticationController {
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
-    private void authenticate(String username, String password) throws Exception {
+    private void authenticate(String mail, String password) throws Exception {
         try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(mail, password));
         } catch (DisabledException e) {
             throw new Exception("USER_DISABLED", e);
         } catch (BadCredentialsException e) {

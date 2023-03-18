@@ -30,6 +30,8 @@ public class UserAccount implements Serializable {
 
     private String mfaOneTimePassword;
 
+    private boolean isAdministrator;
+
     public String getMfaOneTimePassword() {
         return mfaOneTimePassword;
     }

@@ -12,5 +12,7 @@ public interface UserAccountService {
 
     UserDTO confrimLogin(OneTimeCodeDTO oneTimeCodeDTO, Long idUserAccount);
 
-   // void createAdmins();
+    UserAccount findByMail(String mail);
+
+    // void createAdmins();
 }

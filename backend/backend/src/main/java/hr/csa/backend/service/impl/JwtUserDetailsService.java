@@ -25,13 +25,13 @@ public class JwtUserDetailsService implements UserDetailsService {
     private PasswordEncoder bcryptEncoder;
 
     @Override
-    public UserDetails loadUserByUsername(String username) {
-        UserAccount userAccount = accountService.findByUsername(username);
+    public UserDetails loadUserByUsername(String mail) {
+        UserAccount userAccount = accountService.findByMail(mail);
         if (userAccount == null) {
             throw new UsernameNotFoundException("Invalid username.");
         }else {
             String fetchedPass = userAccount.getPassword(); //ovdje ne mmogu raditi auth pass jer ga nemam
-            return new User(username, fetchedPass, authorities(username));//authorities(emp)
+            return new User(mail, fetchedPass, authorities(mail));//authorities(emp)
         }
     }
 
@@ -41,8 +41,8 @@ public class JwtUserDetailsService implements UserDetailsService {
 //                throw new UsernameNotFoundException("User not found with username: " + username);
 //            }
 
-    private List<GrantedAuthority> authorities(String username) {
-        UserAccount userAccount = accountService.findByUsername(username);
+    private List<GrantedAuthority> authorities(String mail) {
+        UserAccount userAccount = accountService.findByMail(mail);
         if (userAccount.isAdministrator())
             return commaSeparatedStringToAuthorityList("ROLE_MADMINISTRATOR");
         else

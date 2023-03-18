@@ -26,12 +26,14 @@ public class UserAccountController {
     @Autowired
     private PasswordEncoder bcryptEncoder;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/registerUser")
     public ResponseEntity<UserDTO> registerUser(@RequestBody UserDTO userDTO){
         UserDTO userDTORegistred = accountService.registerUser(userDTO);
         return new ResponseEntity<>(userDTORegistred, HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/login")
     public ResponseEntity<UserDTO> loginUser(@RequestBody LoginDTO loginDTO){
         UserDTO userDTO = accountService.loginUser(loginDTO);
@@ -39,6 +41,7 @@ public class UserAccountController {
     }
 
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/confirmLogin/{idUserAccount}")
     public ResponseEntity<UserDTO> confirmLogin(@AuthenticationPrincipal User user, @RequestBody OneTimeCodeDTO oneTimeCodeDTO, @PathVariable Long idUserAccount){
         if(user.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMINISTRATOR"))
@@ -49,6 +52,7 @@ public class UserAccountController {
         return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/getAllUsers")
     public ResponseEntity<List<UserDTO>> getAllUsers(@AuthenticationPrincipal User user){
         if(user.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMINISTRATOR"))){
@@ -58,6 +62,7 @@ public class UserAccountController {
         return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/getAllAdmins")
     public ResponseEntity<List<UserDTO>> getAllAdmins(@AuthenticationPrincipal User user){
         if(user.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMINISTRATOR"))){
@@ -67,6 +72,7 @@ public class UserAccountController {
         return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/deleteUser")
     public ResponseEntity<Boolean> deleteUser(@AuthenticationPrincipal User user, @PathVariable Long idUserAccount){
         if(user.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMINISTRATOR"))){

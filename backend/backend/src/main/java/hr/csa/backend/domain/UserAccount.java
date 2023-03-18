@@ -27,6 +27,12 @@ public class UserAccount implements Serializable {
     @NotNull(message = "first name shouldn't be null")
     private String firstName;
 
+    @NotNull(message = "last name shouldn't be null")
+    private String lastName;
+
+    private boolean isAdministrator;
+    private boolean isUser;
+
     public String getMail() {
         return mail;
     }
@@ -63,14 +69,15 @@ public class UserAccount implements Serializable {
         this.lastName = lastName;
     }
 
-    @NotNull(message = "last name shouldn't be null")
-    private String lastName;
 
-
-    public UserAccount(String mail, String password, String firstName, String lastName) {
+    public UserAccount(String mail, String password, String firstName, String lastName, boolean isAdministrator, boolean isUser) {
         this.mail = mail;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.isAdministrator = isAdministrator;
+        this.isUser = isUser;
     }
+
+
 }

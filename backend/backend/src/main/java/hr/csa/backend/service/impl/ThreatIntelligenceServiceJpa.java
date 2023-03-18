@@ -3,10 +3,12 @@ package hr.csa.backend.service.impl;
 import hr.csa.backend.dao.ThreatIntelligenceRepository;
 import hr.csa.backend.domain.ThreatLevel;
 import hr.csa.backend.domain.ThreatIntelligence;
+import hr.csa.backend.service.AlertService;
 import hr.csa.backend.service.ThreatIntelligenceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +21,9 @@ public class ThreatIntelligenceServiceJpa implements ThreatIntelligenceService {
 
     @Autowired
     private ThreatIntelligenceRepository threatIntelligenceRepository;
+
+    @Autowired
+    private AlertService alertService;
 
     private List<String> extensions = Stream.of(new String[]{
             ".pdf", ".txt", ".jpg", ".png", ".exe", ".ppt", ".docx", ".zip"
@@ -46,15 +51,17 @@ public class ThreatIntelligenceServiceJpa implements ThreatIntelligenceService {
 
         int index = (int) Math.floor(Math.random()*8);
         String extension = extensions.get(index);
-        System.out.println(fileName + extension);
-
+        String name = fileName + extension;
+        ThreatLevel threatLevel = map.get(extension);
+        ThreatIntelligence threatIntelligence = new ThreatIntelligence(threatLevel, name, LocalDateTime.now());
+        threatIntelligenceRepository.save(threatIntelligence);
+        alertService.createNewAlert(threatIntelligence);
+        System.out.println(name);
     }
 
-    @Autowired
-    private ThreatIntelligenceRepository threatRepo;
     @Override
     public List<ThreatIntelligence> getAll() {
-        return threatRepo.findAll();
+        return threatIntelligenceRepository.findAll();
     }
 
     @Override

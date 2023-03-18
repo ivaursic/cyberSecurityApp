@@ -1,10 +1,12 @@
 package hr.csa.backend.domain;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+@Entity
 public class ThreatIntelligence implements Serializable {
 
     @Id
@@ -16,10 +18,10 @@ public class ThreatIntelligence implements Serializable {
     private LocalDateTime dateTime;
 
     public ThreatIntelligence() {
-
     }
 
     public ThreatIntelligence(ThreatLevel level, String name, LocalDateTime dateTime) {
+        super();
         this.level = level;
         this.name = name;
         this.dateTime = dateTime;

@@ -3,7 +3,7 @@ import "./App.css";
 import LoginPage from "./components/LoginPage";
 import Header from "./components/Header";
 import Registration from "./components/Registration";
-import { Dashboard } from "@mui/icons-material";
+import { Dashboard } from './components/DashBoard';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MyAlert from "./components/MyAlert";
 import Alerts from "./components/MyAlerts";

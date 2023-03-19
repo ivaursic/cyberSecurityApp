@@ -138,9 +138,10 @@ export function Dashboard() {
         </div>
         <div class="row">
           <div className="styleCard">
-            <Pie data={dataPie} />
+            <div className="pie">
+              <Pie data={dataPie} />
+            </div>
           </div>
-
           <div className="styleCard">
             <Bar options={options} data={dataChart} />
           </div>

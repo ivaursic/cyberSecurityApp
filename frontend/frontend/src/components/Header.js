@@ -21,11 +21,11 @@ export default function Header() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" color={"secondary"}>
+      <AppBar position="static" style={{ color: "white" }}>
         <Toolbar>
           {user === null && (
             <Link to="/login">
-              <AccountCircle></AccountCircle>
+              <AccountCircle style={{ color: "white" }}></AccountCircle>
             </Link>
           )}
           {user !== null && (

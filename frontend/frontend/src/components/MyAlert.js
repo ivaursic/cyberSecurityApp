@@ -11,7 +11,8 @@ export default function MyAlert() {
         <Alert
           severity="warning"
           className="styleCard"
-          onClose={() => setShow(false)}>
+          onClose={() => setShow(false)}
+          style={{ backgroundColor: "white" }}>
           {" "}
           Hello :
         </Alert>

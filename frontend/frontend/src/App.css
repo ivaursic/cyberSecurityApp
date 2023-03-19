@@ -28,6 +28,64 @@
   color: #61dafb;
 }
 
+.styleCard {
+  border-radius: 8px;
+  box-shadow: 8px 4px 10px 8px rgba(171, 158, 158, 0.9);
+  border-radius: 20px;
+  color: #253b56;
+  margin: 12px 0px;
+  padding: 1.8rem;
+  margin-left: 20%;
+  margin-right: 20%;
+  position: relative;
+}
+
+
+.pie-container{
+  border-radius: 8px;
+  box-shadow: 8px 4px 10px 8px rgba(171, 158, 158, 0.9);
+  border-radius: 20px;
+  color: #253b56;
+  margin: 12px 0px;
+  padding: 1.8rem;
+  margin-left: 20%;
+  position: relative;
+  width: 300px;
+  height: 300px;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right:40%;
+}
+
+.pie{
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.diagram{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.signInLogin {
+  border-radius: 8px;
+  box-shadow: 8px 8px 8px 8px rgba(0,0,0,0.2);
+  border-radius: 20px;
+  color: #253b56;
+  width:50%;
+    height:50%;
+}
+
+
+.column {
+    float: left;
+    width: 25%;
+    padding: 0 10px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -35,4 +93,20 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.styleCard{
+  color: white;
+}
+
+canvas{
+  text-decoration: white;
+}
+
+.div-color{
+  background-color: hwb(216 1% 95%);
+}
+
+body{
+  background-color: hwb(216 1% 95%);
 }

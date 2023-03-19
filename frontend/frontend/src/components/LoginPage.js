@@ -35,39 +35,34 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function LoginPage() {
-
-
   const [data, setData] = React.useState({
-    mail : '',
-    password : ''
+    mail: "",
+    password: "",
   });
 
-  const [error, setError] = React.useState('');
+  const [error, setError] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [formPassword, setFormPassword] = React.useState("");
   const [userL, setUserL] = React.useState("");
   const [logged, setLogged] = React.useState(false);
-  const url = 'http://localhost:8080/login';
+  const url = "http://localhost:8080/login";
 
-
-
-    // function routeChange() {
-    //   return <Navigate to='/dashboard'></Navigate>
-    // }
+  // function routeChange() {
+  //   return <Navigate to='/dashboard'></Navigate>
+  // }
 
   async function handleSubmit(e) {
-
     let config = {
-      headers : {
-        'Content-Type': 'application/json',
-        'Authorization': null,
-      }
-    }
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: null,
+      },
+    };
 
     const axiosPayload = {
       mail: email,
-      password: formPassword
-    }
+      password: formPassword,
+    };
 
     e.preventDefault();
     try{
@@ -99,13 +94,20 @@ export default function LoginPage() {
     
   };
 
-  if(logged){
-    return <Navigate to='/confirmLogin'></Navigate>
+        return <Navigate to="/dashboard"></Navigate>;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  if (logged) {
+    return <Navigate to="/confirmLogin"></Navigate>;
   }
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" className="signInLogin">
         <CssBaseline />
         <Box
           sx={{

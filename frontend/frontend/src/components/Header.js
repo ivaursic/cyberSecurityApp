@@ -12,14 +12,23 @@ import { Link } from 'react-router-dom';
 
 export default function Header() {
 
+  var user = JSON.parse(localStorage.getItem('user'));
+  const token = JSON.parse(localStorage.getItem('token'));
+
+
 
     return (
         <Box sx={{ flexGrow: 1}}>
           <AppBar position="static">
             <Toolbar>
-                  <Link to ='/login'>
-                  <AccountCircle></AccountCircle>
-                  </Link>
+              { user === null &&
+              <Link to ='/login'>
+              <AccountCircle></AccountCircle>
+              </Link>}
+              {user !== null && 
+                <h1>Hello {user.firstName}</h1>
+              }
+                
             </Toolbar>
           </AppBar>
         </Box>

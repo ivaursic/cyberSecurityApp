@@ -18,10 +18,8 @@ export default function Registration() {
   const [lastName, setLastName] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [registered, setRegistered] = React.useState(false);
-
-  function routeChange() {
-
-  }
+  const [user, setUser] = React.useState('');
+  const [token, setToken] = React.useState('');
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -32,16 +30,32 @@ export default function Registration() {
     lastName : lastName
   }
 
-  
-
-      const response  = await axios.post("http://localhost:8080/registerUser", data)
-      .then(function(res) {
-        console.log(res);
-        setRegistered(true);
-      }).catch( function(error) {
-        console.log(error);
-        alert('Something went wrong');
+  try{
+    axios.post("http://localhost:8080/registerUser", data)
+    .then(function(res) {
+      setUser(res.data);
+      localStorage.setItem('user', JSON.stringify(res.data)); 
+      const tokenData = {
+        mail : res.data.mail,
+        password : password
+      }
+      axios.post(
+        "http://localhost:8080/authenticate", tokenData
+      ).then(function(response)  {
+        console.log(response.data);
+        setToken(response.data);
+        localStorage.setItem('token', JSON.stringify(response.data));
       });
+      setRegistered(true);
+    }).catch( function(error) {
+      console.log(error);
+      alert('Something went wrong');
+    });
+  } catch (error) {
+    console.log(error);
+  }
+
+  
   };
 
   if(registered){

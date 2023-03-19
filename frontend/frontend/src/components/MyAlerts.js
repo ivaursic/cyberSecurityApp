@@ -1,6 +1,8 @@
 import MyAlert from './MyAlert';
 import React from 'react';
 
+import axios from 'axios';
+
 export default function MyAlerts() {
 
     //const [alerts , setAlerts] = React.useState([]);
@@ -43,11 +45,23 @@ export default function MyAlerts() {
         
     ];
 
-    /*React.useEffect(() => {
-        fetch('./data/threatInfo.json').then(alerts => alerts.json())
+    //var user = JSON.parse(localStorage.getItem('user'));
+
+    /*React.useEffect(async () => {
+        const token = await JSON.parse(localStorage.getItem('token'));
+        console.log(token.token);
+        const config= {
+            headers: { Authorization : `Bearer ${token.token}`}
+        }
+
+        const response = await axios.get('http://localhost:8080/getAllAlerts', config).then(alerts => alerts.json())
         .then(alerts => setAlerts(alerts))
         .then(console.log(alerts));
-    }, []);*/
+     });*/
+    //const token = JSON.parse(localStorage.getItem('token'));
+
+    
+
 
     return (
         <>

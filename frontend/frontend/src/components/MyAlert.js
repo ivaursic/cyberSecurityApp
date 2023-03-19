@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 
 export default function MyAlert({severity, type, source, potentialImpact}) {
 
-   // const {severity, type, source, potentialImpact} = props.alert;
+   //const {severity, type, source, potentialImpact} = props.alert;
 
     //{props.alert.severity}! type: {props.alert.type}, source: {props.alert.source}, potential impact: {props.alert.potentialImpact}
 
@@ -14,5 +14,5 @@ export default function MyAlert({severity, type, source, potentialImpact}) {
         </>
     );
   
-  return <Button onClick={() => setShow(true)}>Show Alert</Button>;
+  //return <Button onClick={() => setShow(true)}>Show Alert</Button>;
 }

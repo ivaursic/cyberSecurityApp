@@ -131,6 +131,8 @@ export function Dashboard() {
   }, []); */
 
   return (
+    <>
+    {user !== null &&
     <div className="dashboard">
       <div className="alerts-card ">
         <div className="styleCard">
@@ -148,5 +150,7 @@ export function Dashboard() {
       </div>
       <div className="card"></div>
     </div>
+    }
+    </>
   );
 }

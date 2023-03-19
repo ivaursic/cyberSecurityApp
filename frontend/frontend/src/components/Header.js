@@ -17,7 +17,7 @@ export default function Header() {
         <Box sx={{ flexGrow: 1}}>
           <AppBar position="static">
             <Toolbar>
-                  <Link to ="login">
+                  <Link to ='/login'>
                   <AccountCircle></AccountCircle>
                   </Link>
             </Toolbar>

@@ -10,6 +10,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import axios from 'axios';
 
@@ -46,6 +47,12 @@ export default function LoginPage() {
   const [userL, setUserL] = React.useState("");
   const url = 'http://localhost:8080/login';
 
+
+
+    function routeChange() {
+      return <Navigate to='/dashboard'></Navigate>
+    }
+
   async function handleSubmit(e) {
 
     let config = {
@@ -65,6 +72,7 @@ export default function LoginPage() {
     ).then(res => {
       setUserL(res.data);
       console.log(res.data);
+      return <Navigate to='/dashboard'></Navigate>
     }).catch(err => {
       console.log(err);
     });

@@ -8,6 +8,8 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import axios from 'axios';
 import { Button } from "@mui/material";
+import { ReactDOM } from "react";
+import { Navigate, Router } from "react-router-dom";
 
 export default function Registration() {
 
@@ -15,6 +17,11 @@ export default function Registration() {
   const [mail, setMail] = React.useState('');
   const [lastName, setLastName] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [registered, setRegistered] = React.useState(false);
+
+  function routeChange() {
+
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -25,14 +32,21 @@ export default function Registration() {
     lastName : lastName
   }
 
+  
+
       const response  = await axios.post("http://localhost:8080/registerUser", data)
       .then(function(res) {
         console.log(res);
+        setRegistered(true);
       }).catch( function(error) {
         console.log(error);
         alert('Something went wrong');
       });
   };
+
+  if(registered){
+    return <Navigate to='/dashboard'></Navigate>
+  }
 
   return (
     <Container component="main" maxWidth="xs">

@@ -80,15 +80,15 @@ export function Dashboard() {
     headers: { Authorization: `Bearer ${token}` },
   };
 
-  const [numberOfHigh, setNumberOfHigh] = React.useState([]);
-  const [numberOfMedium, setNumberOfMedium] = React.useState([]);
-  const [numberOfLow, setNumberOfLow] = React.useState([]);
+//  const [numberOfHigh, setNumberOfHigh] = React.useState([]);
+//  const [numberOfMedium, setNumberOfMedium] = React.useState([]);
+//  const [numberOfLow, setNumberOfLow] = React.useState([]);
 
   const dataPie = {
     labels: ["High Alert", "Medium Alert", "Low Alert"],
     datasets: [
-      {
-        label: "# of Alerts",
+      { 
+        label: '# of Alerts',
         data: [5, 7, 15],
         backgroundColor: [
           "rgba(232, 9, 9, 1)",
@@ -105,7 +105,7 @@ export function Dashboard() {
     ],
   };
 
-  React.useEffect(() => {
+/*  React.useEffect(() => {
     axios
       .get(`http://localhost:8080/getNumberOfHigh`, config)
       .then((response) => {
@@ -128,9 +128,11 @@ export function Dashboard() {
       .then((response) => {
         setNumberOfLow(response.data);
       });
-  }, []);
+  }, []); */
 
   return (
+    <>
+    {user !== null &&
     <div className="dashboard">
       <div className="alerts-card ">
         <div className="styleCard">
@@ -149,5 +151,7 @@ export function Dashboard() {
       </div>
       <div className="card"></div>
     </div>
+    }
+    </>
   );
 }

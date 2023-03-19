@@ -13,6 +13,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Navigate, useNavigate } from "react-router-dom";
 
 import axios from 'axios';
+import { accordionSummaryClasses } from "@mui/material";
 
 function Copyright(props) {
   return (
@@ -69,16 +70,33 @@ export default function LoginPage() {
     }
 
     e.preventDefault();
-    const response = await axios.post("http://localhost:8080/login", axiosPayload
-    ).then(res => {
+    try{
+      const response = await axios.post("http://localhost:8080/login", axiosPayload
+    ).then(async res => {
       setUserL(res.data);
+      localStorage.setItem('user', JSON.stringify(res.data));
+      const tokenData = {
+        mail : email,
+        password : formPassword
+      }
+      axios.post("http://localhost:8080/authenticate", tokenData).then(function(response){
+      console.log(response.data);
+      window.location.reload(false);
+      localStorage.setItem('token', JSON.stringify(response.data));
+      }
+      ).catch(function(e) {
+        console.log(e);
+      });
+      
       setLogged(true);
       console.log(res.data);
-      
-      return <Navigate to='/dashboard'></Navigate>
     }).catch(err => {
       console.log(err);
     });
+    } catch(e) {
+      console.log(e);
+    }
+    
   };
 
   if(logged){

@@ -30,6 +30,7 @@ export default function ConfirmLogin() {
     }
 
     async function handleSubmit() {
+      window.location.reload(false);
       setInsert(true);
 
        /*try{

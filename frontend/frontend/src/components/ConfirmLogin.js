@@ -10,6 +10,8 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Navigate } from "react-router-dom";
+import axios from 'axios';
 
 
 
@@ -18,11 +20,7 @@ const theme = createTheme();
 export default function ConfirmLogin() {
 
     var user = JSON.parse(localStorage.getItem('user'));
-
-    async function handleSubmit() {
-        
-    } 
-    
+   
 
     const [code, setCode] = React.useState('');
     const [insert, setInsert] = React.useState(false);
@@ -31,6 +29,22 @@ export default function ConfirmLogin() {
       return <Navigate to='/dashboard'></Navigate>
     }
 
+    async function handleSubmit() {
+      setInsert(true);
+
+       /*try{
+        axios.post(`http://localhost:8080/confirmLogin/${user.idUserAccount}`, code, pConfig )
+        .then( function(response) {
+          console.log(response);
+          setInsert(true);
+        }
+        )
+       }  catch(e) {
+        console.log(e);
+        alert("Wrong code");
+       }*/
+    } 
+  
     return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">

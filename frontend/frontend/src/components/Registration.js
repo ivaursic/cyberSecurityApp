@@ -19,9 +19,6 @@ export default function Registration() {
   const [password, setPassword] = React.useState('');
   const [registered, setRegistered] = React.useState(false);
 
-  function routeChange() {
-
-  }
 
   async function handleSubmit(e) {
     e.preventDefault();

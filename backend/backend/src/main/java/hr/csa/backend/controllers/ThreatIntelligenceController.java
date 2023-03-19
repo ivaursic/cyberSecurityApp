@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("")
 public class ThreatIntelligenceController {
-//    @Autowired
-//    private ThreatIntelligenceService threatService;
+
+    @Autowired
+    private ThreatIntelligenceService threatService;
 
 
 

@@ -8,6 +8,7 @@ import hr.csa.backend.service.ThreatIntelligenceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -53,7 +54,11 @@ public class ThreatIntelligenceServiceJpa implements ThreatIntelligenceService {
         String extension = extensions.get(index);
         String name = fileName + extension;
         ThreatLevel threatLevel = map.get(extension);
-        ThreatIntelligence threatIntelligence = new ThreatIntelligence(threatLevel, name, LocalDateTime.now());
+        long offset = Timestamp.valueOf("2012-01-01 00:00:00").getTime();
+        long end = Timestamp.valueOf("2013-01-01 00:00:00").getTime();
+        long diff = end - offset + 1;
+        Timestamp rand = new Timestamp(offset + (long)(Math.random() * diff));
+        ThreatIntelligence threatIntelligence = new ThreatIntelligence(threatLevel, name, rand.toLocalDateTime());
         threatIntelligenceRepository.save(threatIntelligence);
         alertService.createNewAlert(threatIntelligence);
         System.out.println(name);

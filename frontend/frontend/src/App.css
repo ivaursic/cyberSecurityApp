@@ -28,6 +28,33 @@
   color: #61dafb;
 }
 
+.styleCard {
+  border-radius: 8px;
+  box-shadow: 8px 8px 8px 8px rgba(0,0,0,0.2);
+  border-radius: 20px;
+  color: #253b56;
+  margin: 12px 0px;
+  padding: 1.8rem;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.signInLogin {
+  border-radius: 8px;
+  box-shadow: 8px 8px 8px 8px rgba(0,0,0,0.2);
+  border-radius: 20px;
+  color: #253b56;
+  width:50%;
+    height:50%;
+}
+
+
+.column {
+    float: left;
+    width: 25%;
+    padding: 0 10px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

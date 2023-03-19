@@ -1,4 +1,6 @@
 import { Alert } from "@mui/material";
+import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
 
 export default function MyAlert({severity, type, source, potentialImpact}) {
 
@@ -11,4 +13,6 @@ export default function MyAlert({severity, type, source, potentialImpact}) {
             <Alert severity ={severity}> {severity}! type: {type}, source: {source}, potential impact: {potentialImpact}</Alert>
         </>
     );
+  
+  return <Button onClick={() => setShow(true)}>Show Alert</Button>;
 }

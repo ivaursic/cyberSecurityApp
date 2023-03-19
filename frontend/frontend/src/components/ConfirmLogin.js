@@ -25,6 +25,11 @@ export default function ConfirmLogin() {
     
 
     const [code, setCode] = React.useState('');
+    const [insert, setInsert] = React.useState(false);
+
+    if(insert){
+      return <Navigate to='/dashboard'></Navigate>
+    }
 
     return (
     <ThemeProvider theme={theme}>

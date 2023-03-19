@@ -45,13 +45,14 @@ export default function LoginPage() {
   const [email, setEmail] = React.useState("");
   const [formPassword, setFormPassword] = React.useState("");
   const [userL, setUserL] = React.useState("");
+  const [logged, setLogged] = React.useState(false);
   const url = 'http://localhost:8080/login';
 
 
 
-    function routeChange() {
-      return <Navigate to='/dashboard'></Navigate>
-    }
+    // function routeChange() {
+    //   return <Navigate to='/dashboard'></Navigate>
+    // }
 
   async function handleSubmit(e) {
 
@@ -71,12 +72,18 @@ export default function LoginPage() {
     const response = await axios.post("http://localhost:8080/login", axiosPayload
     ).then(res => {
       setUserL(res.data);
+      setLogged(true);
       console.log(res.data);
+      
       return <Navigate to='/dashboard'></Navigate>
     }).catch(err => {
       console.log(err);
     });
   };
+
+  if(logged){
+    return <Navigate to='/confirmLogin'></Navigate>
+  }
 
   return (
     <ThemeProvider theme={theme}>

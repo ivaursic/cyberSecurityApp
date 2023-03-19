@@ -17,7 +17,29 @@ export default function MyAlerts() {
                 "type" : "virus",
                 "source" : "ip2",
                 "potentialImpact" : "server shutdown"
-            }
+            },
+            {
+                "severity" : "info",
+                "type" : "data leaked",
+                "source" : "ip",
+                "potentialImpact" : "databaseBreach"
+            },
+            {
+                "severity" : "error",
+                "type" : "virus",
+                "source" : "ip",
+                "potentialImpact" : "databaseBreach"
+            },            {
+                "severity" : "error",
+                "type" : "virus",
+                "source" : "ip",
+                "potentialImpact" : "databaseBreach"
+            },            {
+                "severity" : "error",
+                "type" : "virus",
+                "source" : "ip",
+                "potentialImpact" : "databaseBreach"
+            },
         
     ];
 
@@ -31,7 +53,14 @@ export default function MyAlerts() {
         <>
             <div>
                 <h3>There are potential threats to the network :</h3>
-                {alerts.map(alert => <MyAlert alert={alert}></MyAlert>)}
+                {alerts.map(alert => 
+                <MyAlert severity= {alert.severity}
+                type= {alert.type}
+                source= {alert.source}
+                potentialImpact= {alert.potentialImpact}>
+                </MyAlert>
+            
+                    )};
             </div>
         </>
     );
